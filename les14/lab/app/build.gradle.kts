@@ -9,6 +9,7 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     war
+    jacoco
     id("org.springframework.boot") version "4.0.5"
 }
 
@@ -29,8 +30,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter:4.0.5")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:4.0.5")
     implementation("org.springframework.boot:spring-boot-starter-webmvc:4.0.5")
+    implementation("org.springframework.boot:spring-boot-starter-webmvc-test:4.0.5")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:4.0.5")
     implementation("org.springframework.boot:spring-boot-starter-security:4.0.5")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:4.0.5")
     implementation("com.h2database:h2:2.4.240")
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.1.0")
     compileOnly("org.projectlombok:lombok:1.18.44")

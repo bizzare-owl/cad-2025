@@ -55,6 +55,7 @@ public class OrderController {
         detail.setPrice(product.getPrice());
 
         Order order = new Order();
+        order.setOrderId(1);
         order.setCustomer(customer);
         order.setShippingAddress(shippingAddress);
         order.setStatus("NEW");
