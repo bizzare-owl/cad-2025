@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo Tracker</title>
+</head>
+<body>
+<h1>ToDo List</h1>
+<ul>
+    <!-- Здесь будут отображаться задачи -->
+    <li th:each="task : ${tasks}">
+        <span th:text="${task.title}"></span>
+        <span th:text="${task.description}"></span>
+        <span th:text="${task.priority}"></span>
+        <span th:text="${task.completed ? 'Completed' : 'Pending'}"></span>
+        <a th:href="@{/deleteTask/{id}(id=${task.id})}"
+            onclick="return confirm('Вы уверены, что хотите удалить эту заметку?');">
+            Delete
+        </a>
+        <form th:action="@{/updateTask/{id}(id=${task.id})}" method="post"
+              style="display:inline;">
+            <input type="hidden" name="completed" value="true">
+            <button type="submit">Mark as Completed</button>
+        </form>
+    </li>
+</ul>
+<h2>Add New Task</h2>
+<form th:action="@{/addTask}" method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title">
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description">
+    <label for="description">Priority:</label>
+    <input type="text" id="priority" name="priority">
+    <button type="submit">Add Task</button>
+</form>
+</body>
+</html>
