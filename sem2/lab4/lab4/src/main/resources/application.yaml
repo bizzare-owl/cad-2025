@@ -1,0 +1,14 @@
+    spring.datasource.username=postgres
+    spring.datasource.password=${POSTGRES_PASSWORD:change_me}
+    spring.datasource.driver-class-name=org.postgresql.Driver
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todo_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  application:
+    name: lab1

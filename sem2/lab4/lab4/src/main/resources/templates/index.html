@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo Tracker</title>
+</head>
+<body>
+<h1>ToDo List</h1>
+<ul>
+    <!-- Отображение задач -->
+    <li th:each="task : ${tasks}">
+        <span th:text="${task.description}"></span> <!-- Описание задачи -->
+        <span th:text="${task.completed ? 'Completed' : 'Pending'}"></span>
+        <!-- Статус задачи -->
+        <!-- Ссылка для удаления задачи -->
+        <a th:href="@{/deleteTask/{id}(id=${task.id})}">Delete</a>
+        <!-- Форма для обновления статуса задачи -->
+        <form th:action="@{/updateTask/{id}(id=${task.id})}" method="post"
+              style="display:inline;">
+            <input type="hidden" name="completed" th:value="true"
+                   th:if="${!task.completed}">
+            <input type="hidden" name="completed" th:value="false"
+                   th:if="${task.completed}">
+            <button type="submit" th:text="${task.completed ? 'Mark as
+Pending' : 'Mark as Completed'}"></button>
+        </form>
+    </li>
+</ul>
+<h2>Add New Task</h2>
+<!-- Форма для добавления новой задачи -->
+<form th:action="@{/addTask}" method="post">
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required>
+    <button type="submit">Add Task</button>
+</form>
+</body>
+</html>
